@@ -18,35 +18,35 @@ def insertSong():
         print('\n\nInsert cancelled...')
 
 def getContentRating():
-    print('\n\n\n')
-    optionList = ('1', '2', '3')
+    print('\n\n')
+    optionList = ['1', '2', '3']
     ratingList = ['G','PG','R']
     inpRequest = 'Content Rating:\n-----------\n1. G - General Audiences\n2. PG - Parental Guidence Advised\n3. R - Restricted\n--: '
-    selector = int(input(inpRequest))
+    selector = input(inpRequest)
 
     if selector not in optionList:
-        selector = getValidOption( selector, optionList, inpRequest )
+        selector = getvalidatedOption( selector, inpRequest, optionList )
 
-    rating = ratingList[selector-1]
+    rating = ratingList[int(selector)-1]
     return rating
 
 def getGenre():
-    print('\n\n\n')
-    genreInt = int(input('Genre:\n1. Action\n2. Animation\n3. Crime\n4. Comedy\n5. Fantasy\n6. Fighting\n7. Sci-Fi\n8. Adventure\n--: '))
+    print('\n\n')
     genreList = ['Action','Animation','Crime','Comedy','Fantasy','Fighting','Sci-Fi','Adventure']
-    genre = genreList[genreInt-1]
+    optionList = ['1', '2', '3', '4', '5', '6', '7', '8' ]
+    inpRequest = 'Genre:\n-----------\n1. Action\n2. Animation\n3. Crime\n4. Comedy\n5. Fantasy\n6. Fighting\n7. Sci-Fi\n8. Adventure\n--: '
+
+    selector = int( input( inpRequest ) )
+    if selector not in optionList:
+        selector = getvalidatedOption( selector, inpRequest, optionList )
+        
+    genre = genreList[int(selector)-1]
     return genre
 
 def confirmInsert( entry ):
-    optionList = ['Y','N']
-    confirmation = input(f'Please confirm you would like to confirm the following insert (Y/N):\n-----------\n{ entry }\n-----------\n---: ')
-    while confirmation.upper() not in optionList:
-        print('\n\n--- Invalid Selection\n\n')
-        confirmation = input(f'Please confirm you would like to confirm the following insert (Y/N):\n-----------\n{ entry }\n-----------\n---: ')
-    if confirmation.upper() == 'Y':
-        return  True
-    if confirmation.upper() == 'N':
-        return False
+    inpRequest = f'Please confirm you would like to confirm the following insert (Y/N):\n-----------\n{ entry }\n-----------\n---: '
+    selector = getvalidatedOption( None, inpRequest )
+    return isConfirmed( selector )
 
 if __name__ == '__main__':
     insertSong()
