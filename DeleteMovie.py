@@ -27,7 +27,7 @@ def inputFromAvailible( column ):
 
 def getDeletionValue( column ):
     if column == 'title' or column == 'filmID':
-        return input(f'Please enter the { column }: ')
+        return input(f'Please enter the { column if column != "filmID" else "movie ID"  }: ')
     else:
         return inputFromAvailible( column )
 

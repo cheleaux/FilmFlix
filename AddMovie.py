@@ -1,4 +1,5 @@
 from connect import *
+from checks import *
 
 def insertSong(): 
     print('\n\n\n')
@@ -18,9 +19,15 @@ def insertSong():
 
 def getContentRating():
     print('\n\n\n')
-    ratingInt = int(input('Content Rating:\n-----------\n1. G - General Audiences\n2. PG - Parental Guidence Advised\n3. R - Restricted\n--: '))
+    optionList = ('1', '2', '3')
     ratingList = ['G','PG','R']
-    rating = ratingList[ratingInt-1]
+    inpRequest = 'Content Rating:\n-----------\n1. G - General Audiences\n2. PG - Parental Guidence Advised\n3. R - Restricted\n--: '
+    selector = int(input(inpRequest))
+
+    if selector not in optionList:
+        selector = getValidOption( selector, optionList, inpRequest )
+
+    rating = ratingList[selector-1]
     return rating
 
 def getGenre():
