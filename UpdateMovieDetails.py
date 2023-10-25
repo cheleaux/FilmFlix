@@ -3,12 +3,14 @@ from checks import *
 
 def updateMovieDetails():
     print('\n\n\n')
-    tableColumns = { 0:'filmID', 1:'title', 2:'yearReleased', 3:'rating', 4:'duration', 5:'genre'}
+    tableColumns = { 0:'filmID', 1:'title', 2:'yearReleased', 3:'rating', 4:'duration', 5:'genre' }
     seletionClause = getSeletionClause( tableColumns )
     setClause = getSetClause( tableColumns )
-    print(f'UPDATE tblFilms\n{ setClause }\n{ seletionClause }')
-
-    # dbCursor.execute('UPDATE tblFilms SET ')
+    updateQuery = f'UPDATE tblFilms { setClause } { seletionClause }'
+    # print(updateQuery)
+    dbCursor.execute(updateQuery)
+    dbCon.commit()
+    print('Item has been updated')
 
 def getSeletionClause( columns ):
     optionList = [ '1', '2' ]
@@ -23,7 +25,19 @@ def getSeletionClause( columns ):
     selectionClause = f'WHERE { column } = { selection }'
     return selectionClause
 
+def getNewValue( column, selector ):
+    if column == 'yearReleased':
+        properName = 'year of release'
+    else:
+        properName = column
+
+    if int(selector) not in range(1,3):
+        return f"'{ input(f'What would you like to change the { properName } to: ') }'"
+    else:
+        return input(f'What would you like to change the { properName } to: ')
+
 def getSetClause( columns ):
+    print('\n\n')
     optionList = [ '1', '2', '3', '4', '5' ]
     inpRequest = 'What details would you like to change?(Please select a number)\n-----------\n1. Movie Title\n2. Year of release\n3. Rating\n4. Duration\n5. Genre\n-----------\n---: '
     selector = input(inpRequest)
@@ -32,14 +46,7 @@ def getSetClause( columns ):
         selector = getvalidatedOption( selector, inpRequest, optionList )
     
     columnToUpdate = columns[int(selector)]
-
-    if columnToUpdate == 'yearReleased':
-        columnName = 'year of release'
-    else:
-        columnName = columnToUpdate
-
-    updateTo = input(f'What would you like to change the { columnName } to: ')
-
+    updateTo = getNewValue( columnToUpdate, selector)
     setClause = f'SET { columnToUpdate } = { updateTo }'
     return setClause
     
