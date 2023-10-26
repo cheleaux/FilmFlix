@@ -6,8 +6,7 @@ def getvalidatedOption( selection, request, options = ['Y', 'N']):
             print('\n\n--- Invalid Selection\n\n')
             selection = input(request).upper()
     return selection
-
-# Todo: stop getvalidatedOption from running twice 
+# Todo: stop getValidatedOption from running twice 
 
 def isConfirmed( selector ):
     if selector == 'Y':

@@ -1,4 +1,4 @@
-from connect import *
+from Connect import *
 from tabulate import tabulate
 
 def printAllRecords():

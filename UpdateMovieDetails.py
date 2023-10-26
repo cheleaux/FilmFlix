@@ -1,5 +1,5 @@
-from connect import *
-from checks import *
+from Connect import *
+from Checks import *
 from Context import *
 
 def updateMovieDetails():

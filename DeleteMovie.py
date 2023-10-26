@@ -1,8 +1,8 @@
-from connect import *
-from checks import *
+from Connect import *
+from Checks import *
 from Context import *
 
-def DeleteMovie():
+def deleteMovie():
     print('(Please select using the numbered options)')
     deletionColumn = getDeletionColumn()
     deletionValue = getDeletionValue( deletionColumn )
@@ -69,4 +69,4 @@ def processDeleteQuery( itemList, column, condition ):
             print('\n\nItem(s) will not be deleted\n\n')
 
 if __name__ == '__main__':
-    DeleteMovie()
+    deleteMovie()

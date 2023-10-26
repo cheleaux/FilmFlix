@@ -1,5 +1,5 @@
-from connect import *
-from checks import *
+from Connect import *
+from Checks import *
 
 def inputFromAvailible( column ):
     query = f'SELECT DISTINCT { column } FROM tblFilms'
