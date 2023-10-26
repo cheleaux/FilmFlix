@@ -22,3 +22,10 @@ def inputFromAvailible( column ):
 
     value = checkList[int(selector)-1]
     return value
+
+def formatByType( value ):
+    if str(value).isdigit():
+        return value
+    else:
+        return f'"{value.strip()}"'
+    

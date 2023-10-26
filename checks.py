@@ -15,8 +15,9 @@ def isConfirmed( selector ):
     if selector == 'N':
         return False
 
-def formatByType( value ):
-    if str(value).isdigit():
-        return value
-    else:
-        return f'"{value}"'
+def confirmAction( details, action ):
+    title, year, duration, rating, genre = details
+    record = ' | '.join([title, str(year), (str(duration) + ' mins'), rating, genre])
+    inpRequest = f'\nPlease confirm you wish to {action} the following (Y/N):\n-----------\n{ record }\n-----------\n---: '
+    selector = getvalidatedOption( None, inpRequest )
+    return isConfirmed( selector )
