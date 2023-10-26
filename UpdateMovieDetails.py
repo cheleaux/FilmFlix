@@ -20,7 +20,7 @@ def updateMovieDetails():
 def constructSeletionClause( columns ):
     column = getSelectedRow( columns )
     selection = input(f'\nWhat is the { "movie ID" if column == "filmID" else "movie title" }: ')
-    selectionClause = f'WHERE { column } = { formatByType(selection) }'
+    selectionClause = f'WHERE LIKE( { formatByType( selection, "regex" ) }, { column } )'
     return selectionClause
 
 def constructSetClause( columns ):
@@ -31,10 +31,9 @@ def constructSetClause( columns ):
 
 def processUpdate( selectClause, setClause ):
     updateQuery = f'UPDATE tblFilms { setClause } { selectClause }'
-    print(updateQuery)
+    dbCursor.execute(updateQuery)
+    dbCon.commit()
     print('Item has been updated')
-    # dbCursor.execute(updateQuery)
-    # dbCon.commit()
 
 def getSelectedRow( columns ):
     print('\n\n')
@@ -57,7 +56,7 @@ def getSelectedColumn( columns ):
 def getNewValue( columnList, selectedcolumn ):
     if selectedcolumn == columnList[3]:
         newValue = inputFromAvailible( columnList[3] )
-    if selectedcolumn == columnList[5]:
+    elif selectedcolumn == columnList[5]:
         newValue = inputFromAvailible( columnList[5] )
     else:
         newValue = input(f'\nWhat would you like to change the { "year of release" if selectedcolumn == "yearReleased" else selectedcolumn } to: ')    
