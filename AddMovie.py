@@ -2,7 +2,7 @@ from Connect import *
 from Checks import *
 from Context import *
 
-def insertSong(): 
+def insertRecord(): 
     print('\n\n\n')
     
     insertion = {
@@ -25,4 +25,4 @@ def processInsert( insertion ):
     print('Movie has been inserted...')
 
 if __name__ == '__main__':
-    insertSong()
+    insertRecord()
