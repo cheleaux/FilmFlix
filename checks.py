@@ -14,3 +14,9 @@ def isConfirmed( selector ):
         return  True
     if selector == 'N':
         return False
+
+def formatByType( value ):
+    if str(value).isdigit():
+        return value
+    else:
+        return f'"{value}"'
