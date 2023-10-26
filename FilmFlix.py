@@ -1,5 +1,5 @@
 from Checks import *
-import AddMovie, DeleteMovie, UpdateMovieDetails, PrintAllMovies, MainMenu
+import AddMovie, DeleteMovie, UpdateMovieDetails, PrintAllMovies, MainMenu, Report
 
 
 anchored = True
@@ -19,7 +19,7 @@ operations = {
         2: UpdateMovieDetails.updateMovieDetails, 
         3: DeleteMovie.deleteMovie,
         4: PrintAllMovies.printAllRecords,
-        5: exitOperation,
+        5: Report.generateReport,
         6: userQuit
         
     }
