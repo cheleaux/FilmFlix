@@ -33,7 +33,7 @@ def processUpdate( selectClause, setClause ):
     updateQuery = f'UPDATE tblFilms { setClause } { selectClause }'
     dbCursor.execute(updateQuery)
     dbCon.commit()
-    print('Item has been updated')
+    print('\n\nItem has been updated\n')
 
 def getSelectedRow( columns ):
     print('\n\n')
